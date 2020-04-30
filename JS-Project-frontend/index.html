@@ -2,7 +2,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lifegoals.</title>
+  <title>BestSelf.</title>
+  <h1 style="text-align:center">BestSelf.</h1>
+  <h2 style="text-align:center"><i>Let your life goals be your guide...</i></h2>
+  <style>
+  body {
+    background-image: url('2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* background-color: lightgrey; */
+  }
+  h3 {font-family: Ariel, Verdana, sans-sans-serif}
+  h1 {font-size: 75px;
+      font-family: Ariel, Verdana, sans-serif;
+      text-shadow: 5px 5px 6px #666666;}
+   /* {color: DarkCyan;} */
+
+</style>
   </head>
   <body>
     <h3><label for="health">Health</label></h3>
@@ -17,10 +34,25 @@
     <select name="" id="entertainment"></select>
     <h3><label for="wellbeing">Wellbeing</label></h3>
     <select name="" id="wellbeing"></select><br /><br />
-
-    <button id="generateActivitiesList">Generate List</button>
+<br />
+    <button id="generateActivitiesList">Generate List</button><br /><br />
 
     <div id="listOfActivities"></div>
+    <form id="newActivity">
+        <label for=""><h3><i>New Activity</i></h3></label>
+        <input type="text" name="activity">
+        <select name="categorySelect" id="categorySelect">
+          <option value="health">Health</option>
+          <option value="fitness">Fitness</option>
+          <option value="finance">Finance</option>
+          <option value="travel">Travel</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="wellbeing">Wellbeing</option>
+          </select>
+        <input type="submit">
+    </form>
+
+    <script src="src/category.js"></script>
     <script src="src/listOfActivities.js"></script>
     <script src="src/activity.js"></script>
     <script src="src/storageBox.js"></script>
