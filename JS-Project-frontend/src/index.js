@@ -1,3 +1,3 @@
-const box = new StorageBox
-box.getActivities();
-box.bindEventListeners();
+const app = new StorageBox;
+AppAdapter.getActivities();
+app.bindEventListeners();

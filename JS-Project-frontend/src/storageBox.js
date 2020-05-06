@@ -1,79 +1,89 @@
 class StorageBox {
-    static activities = []
-    categories = []
-    url = "http://localhost:3000"
+    static activities = [];
+    static categories = [];
+    url = "http://localhost:3000";
     static listOfActivities = {};  // dailyPractice
+   
+         //ADD EVENT LISTENERS
+   bindEventListeners = () => {
+      AppListener.generateListOfActivitiesListener();
+      AppListener.createActivityListener();
+      AppListener.getActivitiesListeners();
+      // this.appListener = new AppListener();
+   };
+   // RETRIEVING 6 RANDOM ACTIVITIES, DELETING THEM AND POPULATING THEM IN THE DOM
 
-    // listen for button click
+   static generateListOfActivities() {
+      //generate random activities
+      const randomActivities = this.generateRandomActivities();
+      // instantiate a ListOfActivities instance with these activities
+      new ListOfActivities(randomActivities);
+      //make fetch request to delete activities from db
+      AppAdapter.deleteActivities(randomActivities);
+      // insert data into DOM
+      this.renderListOfActivities();
+   };
 
-    bindEventListeners() {
-      const btn = document.getElementById('generateActivitiesList');
-      btn.addEventListener('click', this.getRandomActivities)
-    };
-
-    getRandomActivities() {
+   //retrieve 1 random activity from each category
+   static generateRandomActivities() {
       let randomActivities = [];
-      for (let i = 0; i < 3; i++) {
-        randomActivities.push(StorageBox.activities[Math.floor(Math.random()*StorageBox.activities.length)]);
-      };
-      new ListOfActivities(randomActivities)
+      StorageBox.categories.forEach(category => {
+          randomActivities.push(Activity.byCategory(category.name)[Math.floor(Math.random()*Activity.byCategory(category.name).length)])
+      });
+      return randomActivities;
+   }
+      // ADD LIST OF ACTIVITIES TO DOM
+   static renderListOfActivities(){
       const listOfActivitiesDiv = document.getElementById('listOfActivities');
-      StorageBox.listOfActivities.activities.forEach(listOfActivities => {
-        const activityDiv = document.createElement('div');
-         activityDiv.innerText = listOfActivities.name;
+      listOfActivitiesDiv.innerHTML = "";
+      StorageBox.listOfActivities.activities.forEach(activity => {
+         const activityDiv = document.createElement('div');
+         activityDiv.innerText = activity.name;
          listOfActivitiesDiv.appendChild(activityDiv);
-      })
-    }
-
-
-    getActivities() {
-      // make a fetch request to /activities
-      fetch(this.url + '/activities')
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(data)
-        data.forEach(activity => {
-          new Activity(activity.name, activity.category)
-        });
-        this.renderActivities();
-      })
-      .catch(err => alert(err));
-    };
-
-    renderActivities() {
+      });
+   };
+      //POPULATING DOM W/ ACTIVITY DATA FOR EACH CATEGORY
+   static renderActivities() {
       // create DOM nodes and insert data into them to render in the DOM
-      const healthSelect = document.getElementById('health');
-      const fitnessSelect = document.getElementById('fitness');
-      const financeSelect = document.getElementById('finance');
-      const travelSelect = document.getElementById('travel');
-      const entertainmentSelect = document.getElementById('entertainment');
-      const wellbeingSelect = document.getElementById('wellbeing');
+      const divs = {
+         healthDiv: document.getElementById('health'),
+         fitnessDiv: document.getElementById('fitness'),
+         financeDiv: document.getElementById('finance'),
+         travelDiv: document.getElementById('travel'),
+         entertainmentDiv: document.getElementById('entertainment'),
+         wellbeingDiv: document.getElementById('wellbeing')
+      }
+      for (let key in divs) {
+         divs[key].classList.add('hidden');
+         divs[key].innerHTML = "";
+      }
+      const { healthDiv, fitnessDiv, financeDiv, travelDiv, entertainmentDiv, wellbeingDiv } = divs;
       StorageBox.activities.forEach(activity => {
-        const option = document.createElement('option');
-        option.innerText = activity.name;
-
-        switch(activity.category.name) {
+         const p = document.createElement('p');
+         p.innerText = activity.name;
+         //where we append it will be conditional based on what category it belongs to
+         switch(activity.category.name) {
             case "health":
-              healthSelect.appendChild(option);
-              break;
+               healthDiv.appendChild(p);
+               break;
             case "fitness":
-              fitnessSelect.appendChild(option);
-              break;
+               fitnessDiv.appendChild(p);
+               break;
             case "finance":
-              financeSelect.appendChild(option);
-              break;
+               financeDiv.appendChild(p);
+               break;
             case "travel":
-              travelSelect.appendChild(option);
-              break;
+               travelDiv.appendChild(p);
+               break;
             case "entertainment":
-              entertainmentSelect.appendChild(option);
-              break;
-            case "wellbeinng":
-              wellbeingSelect.appendChild(option);
-              break;
+               entertainmentDiv.appendChild(p);
+               break;
+            case "wellbeing":
+               wellbeingDiv.appendChild(p);
+               break;
             default:
               // code block
           }
-      })
+      });
     };
 }
