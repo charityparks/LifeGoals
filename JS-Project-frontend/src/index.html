@@ -1,0 +1,107 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/bootstrap.min (2).css" />
+  <link rel="stylesheet" href="src/index.css" />
+
+
+   <style>
+      /* body {
+         margin: 8px 8px 8px;
+   } */
+      p.lead {color: orange}
+
+      label {color: orange;
+            font-size: 20px;
+      }
+      h3 {font-family: Ariel, Verdana, sans-sans-serif
+         color: purple;
+      }
+      h1 {font-size: 75px;
+         font-family: Ariel, Verdana, sans-serif;
+         text-shadow: 5px 5px 6px #666666;
+         color: orange
+      }
+
+      input[type=text] {
+         width: 25%;
+         padding: 4px 4px;
+         margin: 8px 0;
+         box-sizing: border-box;
+         border: 2px solid darkCyan;
+         border-radius: 4px;
+      }
+      .success {
+         position: float;
+      }
+   </style>
+</head>
+   <body>
+      <div class="jumbotron">
+         <h1 class="display-3">BestSelf.</h1>
+         <p class="lead">Let your goals be your guide...</p>
+         <hr class="my-4">
+
+         <label for="health" id="healthLabel" class="btn btn-outline-warning">Health</label>
+         <div name="" id="health" class="hidden card text-white bg-success mb-3" style="max-width: 20rem;"></div>
+         <label for="fitness" id="fitnessLabel" class="btn btn-outline-warning">Fitness</label>
+         <div name="" id="fitness" class="hidden card text-white bg-danger mb-3" style="max-width: 20rem;""></div>
+         <label for="finance" id="financeLabel" class="btn btn-outline-warning">Finance</label>
+         <div name="" id="finance" class="hidden card text-white bg-warning mb-3" style="max-width: 20rem;""></div>
+         <label for="travel" id="travelLabel" class="btn btn-outline-warning">Travel</label>
+         <div name="" id="travel" class="hidden card text-white bg-info mb-3" style="max-width: 20rem;""></div>
+         <label for="entertainment" id="entertainmentLabel" class="btn btn-outline-warning">Entertainment</label>
+         <div name="" id="entertainment" class="hidden card text-white bg-primary mb-3" style="max-width: 20rem;""></div>
+         <label for="wellbeing" id="wellbeingLabel" class="btn btn-outline-warning">Wellbeing</label>
+         <div name="" id="wellbeing" class="hidden card text-white bg-secondary mb-3" style="max-width: 20rem;""></div>
+         <br /><br /><br />
+
+         <button id="generateListOfActivities" class="btn btn-info">Click here for BestSelf activities!</button><br /><br />
+         <div id="listOfActivities" class="card text-white bg-success mb-3"></div>
+         <hr class="my-4" />
+
+         <form id="newActivity">
+            <label for=""><b>New Activity</b></label>
+            <input type="text" name="activity" required>
+
+            <select name="categorySelect" id="categorySelect" class="btn btn-success dropdown-toggle">
+               <option value="health">Health</option>
+               <option value="fitness">Fitness</option>
+               <option value="finance">Finance</option>
+               <option value="travel">Travel</option>
+               <option value="entertainment">Entertainment</option>
+               <option value="wellbeing">Wellbeing</option>
+            </select>
+            <input type="submit" class="btn btn-danger">
+         </form><br />
+
+         <blockquote class="blockquote text-right">
+            <p class="mb-0"> “The last three or four reps is what makes the muscle grow. This area of pain divides a champion from someone who is not a champion.”</p>
+            <footer class="blockquote-footer">Arnold Schwarzenegger, seven-time Mr. Olympia<cite title="Source Title"></cite></footer>
+         </blockquote>
+         <blockquote class="blockquote text-right">
+            <p class="mb-0">“The successful warrior is the average man, with laser-like focus.”</p>
+            <footer class="blockquote-footer">Bruce Lee, actor and martial artist<cite title="Source Title"></cite></footer>
+         </blockquote>
+         <blockquote class="blockquote text-right">
+            <p class="mb-0">“All our dreams can come true if we have the courage to pursue them.”</p>
+            <footer class="blockquote-footer">Walt Disney, film producer and entrepreneur<cite title="Source Title"></cite></footer>
+         </blockquote>
+         <blockquote class="blockquote text-right">
+            <p class="mb-0">“Not all who wander are lost.”</p>
+            <footer class="blockquote-footer">J.R.R. Tolkien<cite title="Source Title"></cite></footer>
+         </blockquote>
+
+         <script src="src/appListener.js"></script>
+         <script src="src/AppAdapter.js"></script>
+         <script src="src/category.js"></script>
+         <script src="src/listOfActivities.js"></script>
+         <script src="src/activity.js"></script>
+         <script src="src/storageBox.js"></script>
+         <script src="src/index.js"></script>
+
+         <img src="success.jpeg" class="success"/>
+
+   </body>
+</html>
